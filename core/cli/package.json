@@ -1,0 +1,41 @@
+{
+  "name": "@lz-cli/cli",
+  "version": "1.0.0",
+  "description": "core cli",
+  "keywords": [
+    "cli"
+  ],
+  "author": "lawzheng <602285510@qq.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "bin": {
+    "lz-cli": "bin/index.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@lz-cli/log": "file:../../utils/log",
+    "@lz-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "colors": "^1.4.0",
+    "dotenv": "^10.0.0",
+    "import-local": "^3.0.2",
+    "minimist": "^1.2.5",
+    "npmlog": "^4.1.2",
+    "path-exists": "^4.0.0",
+    "root-check": "^2.0.0",
+    "semver": "^7.3.5",
+    "user-home": "^3.0.0"
+  }
+}

@@ -20,15 +20,19 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "type": "git",
+    "url": "git+https://github.com/lawzheng/lz-cli.git"
   },
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@lz-cli/log": "file:../../utils/log",
     "@lz-cli/get-npm-info": "file:../../utils/get-npm-info",
+    "@lz-cli/log": "file:../../utils/log",
+    "@lz-cli/init": "file:../../commands/init",
+    "@lz-cli/exec": "file:../exec",
     "colors": "^1.4.0",
+    "commander": "^8.0.0",
     "dotenv": "^10.0.0",
     "import-local": "^3.0.2",
     "minimist": "^1.2.5",

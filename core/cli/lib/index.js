@@ -4,28 +4,81 @@ module.exports = core;
 
 const path =  require('path')
 const semver = require('semver')
-const log = require('@lz-cli/log')
 const userHome = require('user-home')
 const pathExists = require('path-exists')
 const colors = require('colors/safe')
+const commander = require('commander')
+const log = require('@lz-cli/log')
+const init = require('@lz-cli/init')
+const exec = require('@lz-cli/exec')
 
 const constant = require('./const')
 const pkg = require('../package.json')
 
 let args, config
 
+const program = new commander.Command()
+
 async function core() {
   try {
-    checkPkgVersion()
-    checkNodeVersion()
-    // checkRoot()
-    checkUserHome()
-    checkInputArgs()
-    checkEnv()
-    await checkGlobalUpdate()
+    await prepare()
+    registerCommand()
   } catch (e) {
     log.error(e)
   }
+}
+
+function registerCommand() {
+  program
+    .name(Object.keys(pkg.bin)[0])
+    .usage('<command> [options]')
+    .version(pkg.version)
+    .option('-d, --debug', '是否开启调试模式', false)
+    .option('-tp, --targetPath <targetPath>', '是否指定本地调试文件路径', '');
+
+  program
+    .command('init [projectName]')
+    .option('-f, --force', '是否强制初始化项目')
+    .action(exec)
+
+  // 开启debug模式
+  program.on('option:debug', function() {
+    if (this._optionValues.debug) {
+      process.env.LOG_LEVEL = 'verbose'
+    } else {
+      process.env.LOG_LEVEL = 'info'
+    }
+    log.setLogLevel()
+  })
+
+  program.on('option:targetPath', function() {
+    process.env.CLI_TAEGET_PATH = program._optionValues.targetPath
+  })
+
+  // 对未知命令监听
+  program.on('command:*', function(obj) {
+    const avaliableCommands = program.commands.map(cmd => cmd.name())
+    console.log(colors.red('未知的命令：' + obj[0]))
+    if (avaliableCommands.length > 0) {
+      console.log(colors.red('可用命令：' + avaliableCommands.join(',')))
+    }
+  })
+
+  program.parse(process.argv)
+  
+  if (program.args && program.args.length < 1) {
+    program.outputHelp()
+  }
+}
+
+async function prepare() {
+  checkPkgVersion()
+  checkNodeVersion()
+  // checkRoot()
+  checkUserHome()
+  // checkInputArgs()
+  checkEnv()
+  await checkGlobalUpdate()
 }
 
 async function checkGlobalUpdate() {
@@ -50,7 +103,6 @@ function checkEnv() {
     })
   }
   createDefaultConfig()
-  log.verbose('环境变量', process.env.CLI_HOME_PATH)
 }
 
 function createDefaultConfig() {

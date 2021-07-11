@@ -1,5 +1,5 @@
 {
-  "name": "@lz-cli/package",
+  "name": "@lz-cli/command",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "lawzheng <602285510@qq.com>",
@@ -27,12 +27,8 @@
     "url": "https://github.com/lawzheng/lz-cli/issues"
   },
   "dependencies": {
-    "@lz-cli/format-path": "file:../../utils/format-path",
-    "@lz-cli/get-npm-info": "file:../../utils/get-npm-info",
-    "@lz-cli/utils": "file:../../utils/utils",
-    "fs-extra": "^10.0.0",
-    "npminstall": "^4.11.0",
-    "path-exists": "^4.0.0",
-    "pkg-dir": "^5.0.0"
+    "colors": "^1.4.0",
+    "semver": "^7.3.5",
+    "@lz-cli/log": "file:../../utils/log"
   }
 }

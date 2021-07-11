@@ -27,6 +27,7 @@
     "url": "https://github.com/lawzheng/lz-cli/issues"
   },
   "dependencies": {
-    "@lz-cli/package": "file:../../models/package"
+    "@lz-cli/package": "file:../../models/package",
+    "@lz-cli/log": "file:../../utils/log"
   }
 }

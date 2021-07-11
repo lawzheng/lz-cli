@@ -25,5 +25,9 @@
   },
   "bugs": {
     "url": "https://github.com/lawzheng/lz-cli/issues"
+  },
+  "dependencies": {
+    "@lz-cli/command": "file:../../models/command",
+    "@lz-cli/log": "file:../../utils/log"
   }
 }

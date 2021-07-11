@@ -25,6 +25,9 @@ async function core() {
     registerCommand()
   } catch (e) {
     log.error(e)
+    if (program._optionValues.debug) {
+      console.log(e)
+    }
   }
 }
 
@@ -73,12 +76,11 @@ function registerCommand() {
 
 async function prepare() {
   checkPkgVersion()
-  checkNodeVersion()
   // checkRoot()
   checkUserHome()
   // checkInputArgs()
   checkEnv()
-  await checkGlobalUpdate()
+  // await checkGlobalUpdate()
 }
 
 async function checkGlobalUpdate() {
@@ -144,14 +146,6 @@ function checkRoot() {
 
   const rootCheck = require('root-check')
   rootCheck()
-}
-
-function checkNodeVersion() {
-  const currentVersion = process.version;
-  const lowestVersion = constant.LOWEST_NODE_VERSION
-  if (!semver.gte(currentVersion, lowestVersion)) {
-    throw new Error(colors.red(`lz-cli 需要安装 v${lowestVersion} 以上版本的 Node.js`));
-  }
 }
 
 function checkPkgVersion() {

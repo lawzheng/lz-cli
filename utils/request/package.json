@@ -1,5 +1,5 @@
 {
-  "name": "@lz-cli/utils",
+  "name": "@lz-cli/request",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "lawzheng <602285510@qq.com>",
@@ -13,6 +13,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lawzheng/lz-cli.git"
@@ -24,6 +27,6 @@
     "url": "https://github.com/lawzheng/lz-cli/issues"
   },
   "dependencies": {
-    "cli-spinner": "^0.2.10"
+    "axios": "^0.21.1"
   }
 }

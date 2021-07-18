@@ -28,6 +28,13 @@
   },
   "dependencies": {
     "@lz-cli/command": "file:../../models/command",
-    "@lz-cli/log": "file:../../utils/log"
+    "@lz-cli/log": "file:../../utils/log",
+    "@lz-cli/package": "file:../../models/package",
+    "@lz-cli/request": "file:../../utils/request",
+    "@lz-cli/utils": "file:../../utils/utils",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.1.2",
+    "semver": "^7.3.5",
+    "user-home": "^3.0.0"
   }
 }

@@ -50,7 +50,7 @@ async function getNpmSemverVersion(baseVersion, npmName, registry) {
 async function getNpmLatestVersion(npmName, registry = getDefaultRegistry()) {
   let versions = await getNpmVersions(npmName, registry)
   if (versions) {
-    versions = versions.sort((a, b) => semver.gt(b, a))
+    versions = versions.sort((a, b) => semver.gt(b, a) ? 1 : -1)
     return versions[0]
   }
   return null

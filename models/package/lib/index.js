@@ -39,6 +39,11 @@ class Package {
     return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`)
   }
 
+  /**
+   * 获取本地存储路径名
+   * @param {*} packageVersion 
+   * @returns 
+   */
   getSpecificCacheFilePath(packageVersion) {
     return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${packageVersion}@${this.packageName}`)
   }
@@ -67,6 +72,9 @@ class Package {
     })
   }
 
+  /**
+   * 更新流程
+   */
   async update() {
     await this.prepare()
     const lastestVersion = await getNpmLatestVersion(this.packageName)
@@ -83,6 +91,8 @@ class Package {
           }
         ]
       })
+      this.packageVersion = lastestVersion
+    } else {
       this.packageVersion = lastestVersion
     }
   }

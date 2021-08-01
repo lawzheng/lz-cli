@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@lz-cli/package": "file:../../models/package",
-    "@lz-cli/log": "file:../../utils/log"
+    "@lz-cli/log": "file:../../utils/log",
+    "@lz-cli/utils": "file:../../utils/utils"
   }
 }
